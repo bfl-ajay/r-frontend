@@ -16,7 +16,6 @@ RUN npm ci --legacy-peer-deps
 
 # Copy source code
 COPY src ./src
-COPY public ./public 2>/dev/null || true
 COPY index.html ./
 
 # Build with Vite
@@ -31,7 +30,7 @@ WORKDIR /usr/share/nginx/html
 COPY --from=builder /build/dist .
 
 # Copy nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf 2>/dev/null || true
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose port
 EXPOSE 3000
